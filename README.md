@@ -88,12 +88,29 @@ Combining the Frontend Development with backend usage completing a full stack ap
 
 ---
 
-*React Native
-*Expo
+⋅⋅*React Native
+⋅⋅*Expo
 
 *Frameworks used
 *Any API's used to generate
 \*Any Dependency Management
+⋅⋅*"@react-navigation/native": "^7.0.3",
+⋅⋅*"@react-navigation/native-stack": "^7.1.0",
+⋅⋅*"@react-navigation/stack": "^7.0.5",
+⋅⋅*"axios": "^1.7.9",
+⋅⋅*"expo": "~52.0.15",
+⋅⋅*"expo-linear-gradient": "^14.0.1",
+⋅⋅*"expo-router": "^4.0.11",
+⋅⋅*"expo-status-bar": "~2.0.0",
+⋅⋅*"react": "18.3.1",
+⋅⋅*"react-native": "0.76.3",
+⋅⋅*"react-native-gesture-handler": "~2.20.2",
+⋅⋅*"react-native-heroicons": "^4.0.0",
+⋅⋅*"react-native-progress": "^5.0.1",
+⋅⋅*"react-native-safe-area-context": "4.12.0",
+⋅⋅*"react-native-screens": "~4.1.0",
+⋅⋅*"react-native-snap-carousel": "^3.9.1",
+⋅⋅\*"react-native-svg": "^15.9.0"
 
 ### Contributions
 

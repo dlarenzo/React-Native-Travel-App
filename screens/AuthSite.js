@@ -70,10 +70,10 @@ function AuthSite() {
     { type: "search" },
     { type: "categories" },
     { type: "listings" },
-    { type: "explore" },
     { type: "services" },
     { type: "topics" },
     { type: "clients" },
+    { type: "explore" },
   ];
 
   return (

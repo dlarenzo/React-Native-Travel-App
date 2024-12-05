@@ -23,7 +23,7 @@ export default ExploreTours;
 
 const styles = StyleSheet.create({
   toursOuterContainer: {
-    marginVertical: 40,
+    // marginVertical: 40,
   },
   toursBg: {
     backgroundColor: Colors.bgDark,
