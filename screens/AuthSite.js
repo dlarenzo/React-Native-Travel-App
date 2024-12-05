@@ -18,6 +18,7 @@ import Listing from "../components/Listing";
 import listingData from "../data/destinations.json";
 import HotTopics from "../components/HotTopics";
 import OurClients from "../components/OurClients";
+import Footer from "../components/Footer";
 
 function AuthSite() {
   const [category, setCategory] = useState("All");
@@ -60,6 +61,8 @@ function AuthSite() {
         return <OurClients />;
       case "explore":
         return <ExploreTours />;
+      case "footer":
+        return <Footer />;
       default:
         return null;
     }
@@ -70,10 +73,11 @@ function AuthSite() {
     { type: "search" },
     { type: "categories" },
     { type: "listings" },
-    { type: "services" },
     { type: "topics" },
+    { type: "services" },
     { type: "clients" },
     { type: "explore" },
+    { type: "footer" },
   ];
 
   return (
