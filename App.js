@@ -38,7 +38,7 @@ function AuthStack() {
         name="Welcome"
         component={WelcomeScreen}
         options={{
-          title: "TRAVELR",
+          title: "TRAVELER",
           headerStyle: {
             backgroundColor: Colors.bgDark,
           },
@@ -78,7 +78,7 @@ function AuthenticatedStack() {
   return (
     <Stack.Navigator
       screenOptions={{
-        title: "AuthSite",
+        title: "SITE PAGE YAY!",
         headerStyle: {
           backgroundColor: Colors.bgDark,
         },

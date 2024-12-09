@@ -1,5 +1,5 @@
 import { View, Text, Button, StyleSheet, ImageBackground } from "react-native";
-import { Colors } from "react-native/Libraries/NewAppScreen";
+import { Colors } from "../constants/styles";
 
 function WelcomeScreen({ navigation }) {
   return (
@@ -10,22 +10,28 @@ function WelcomeScreen({ navigation }) {
         style={styles.backgroundImage}
       >
         <View style={styles.heroTitleContainer}>
-          <Text style={styles.heroTitle1}>Welcome To TRAVELR</Text>
+          <Text style={styles.heroTitle1}>Welcome To TRAVELER</Text>
           <Text style={styles.heroTitle2}>
             {" "}
             Where we meet all your traveling needs
           </Text>
         </View>
-        <Button
-          style={styles.navButton}
-          title="Login"
-          onPress={() => navigation.navigate("Login")}
-        />
-        <Button
-          style={styles.navButton}
-          title="Create Account"
-          onPress={() => navigation.navigate("Signup")}
-        />
+        <View style={styles.navButton}>
+          <Button
+            style={styles.navButton}
+            title="Login"
+            onPress={() => navigation.navigate("Login")}
+            color={Colors.textLight}
+          />
+        </View>
+        <View style={styles.navButton}>
+          <Button
+            style={styles.navButton}
+            title="Create Account"
+            onPress={() => navigation.navigate("Signup")}
+            color={Colors.textLight}
+          />
+        </View>
       </ImageBackground>
     </View>
   );
@@ -50,28 +56,29 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   heroTitleContainer: {
-    backgroundColor: Colors.bgDark,
     paddingHorizontal: 20,
     marginBottom: 20,
   },
   heroTitle1: {
-    fontSize: 40,
+    fontSize: 60,
     fontWeight: "bold",
     marginBottom: 15,
     textAlign: "center",
+    color: Colors.textLight,
   },
   heroTitle2: {
-    fontSize: 18,
+    fontSize: 22,
     alignSelf: "center",
     textAlign: "center", // iOS text
     width: 250,
+    color: Colors.textLight,
   },
   navButton: {
     backgroundColor: Colors.bgDark,
+    width: 200,
     padding: 10,
     margin: 10,
     borderRadius: 5,
-    color: Colors.textLight,
   },
   imgBG: {
     flex: 1,

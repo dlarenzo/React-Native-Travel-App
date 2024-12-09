@@ -82,7 +82,7 @@ Combining the Frontend Development with backend usage completing a full stack ap
 
 ---
 
-\*Additional notes about how ot deploy this on a live system
+\*Additional notes about how to deploy this on a live system
 
 ### Built With
 
@@ -93,6 +93,7 @@ Combining the Frontend Development with backend usage completing a full stack ap
 
 *Frameworks used
 *Any API's used to generate
+
 \*Any Dependency Management
 ⋅⋅*"@react-navigation/native": "^7.0.3",
 ⋅⋅*"@react-navigation/native-stack": "^7.1.0",
@@ -118,9 +119,16 @@ Combining the Frontend Development with backend usage completing a full stack ap
 
 \*People who contributed whether it be artwork, inspo sites
 
-### Versioning
+### Versioning/Branches
 
 ---
+
+⋅⋅* Main
+⋅⋅* 1.0 Setup
+⋅⋅* 2.0 Authentication
+⋅⋅* 3.0 Layout
+⋅⋅* 4.0 Backend
+⋅⋅* 5.0 Finalization
 
 \*Version Control
 
