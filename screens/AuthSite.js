@@ -58,8 +58,7 @@ function AuthSite() {
         return <Services />;
       case "topics":
         return <HotTopics />;
-      case "clients":
-        return <OurClients />;
+
       case "clients2":
         return <OurClients2 />;
       case "explore":

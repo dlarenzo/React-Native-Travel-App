@@ -26,6 +26,7 @@ import { useContext } from "react";
 import AuthSite from "./screens/AuthSite";
 import IconButton from "./components/ui/IconButton";
 import Listing from "./components/Listing";
+import ManageQuote from "./components/QuoteOutput/ManageQuote";
 
 // Create Stake Navigator
 const Stack = createNativeStackNavigator();
@@ -100,6 +101,11 @@ function AuthenticatedStack() {
         }}
       />
       <Stack.Screen name="Listing" component={Listing} />
+      <Stack.Screen
+        name="ManageQuote"
+        component={ManageQuote}
+        options={{ presentation: "modal" }}
+      />
     </Stack.Navigator>
   );
 }

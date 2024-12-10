@@ -2,16 +2,20 @@ import { Pressable, StyleSheet, Text, View } from "react-native";
 
 import { Colors } from "../../constants/styles";
 
-function Button({ children, onPress }) {
+function Button({ children, onPress, mode }) {
   return (
-    <Pressable
-      style={({ pressed }) => [styles.button, pressed && styles.pressed]}
-      onPress={onPress}
-    >
-      <View>
-        <Text style={styles.buttonText}>{children}</Text>
-      </View>
-    </Pressable>
+    <View>
+      <Pressable
+        style={({ pressed }) => [styles.button, pressed && styles.pressed]}
+        onPress={onPress}
+      >
+        <View style={[styles.button, mode === "flat" && styles.flat]}>
+          <Text style={[styles.buttonText, mode === "flat" && styles.flatText]}>
+            {children}
+          </Text>
+        </View>
+      </Pressable>
+    </View>
   );
 }
 
@@ -29,6 +33,9 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 4,
   },
+  flat: {
+    backgroundColor: "transparent",
+  },
   pressed: {
     opacity: 0.7,
   },
@@ -37,5 +44,8 @@ const styles = StyleSheet.create({
     color: "white",
     fontSize: 16,
     fontWeight: "bold",
+  },
+  flatText: {
+    color: Colors.textDarker,
   },
 });

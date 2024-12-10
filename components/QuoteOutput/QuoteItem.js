@@ -1,41 +1,38 @@
-import { FlatList, Text, View, StyleSheet, Button } from "react-native";
-import QuoteItem from "./QuoteItem";
-import { Colors } from "../../constants/styles";
+import { Pressable, View, StyleSheet, Text, Button } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import { Colors } from "../../constants/styles";
 
-// Function created to be placed in renderItem to output quotes
-function renderQuoteItem({ item }) {
-  return <QuoteItem {...item} />;
-}
-
-function QuotesList({ quotes }) {
+function QuoteItem({ id, title, description, name }) {
   // Navigation to ManageQuote.js
   const navigation = useNavigation();
 
   function quotePressHandler() {
-    navigation.navigate("ManageQuote");
+    navigation.navigate("ManageQuote", {
+      quoteId: id,
+    });
   }
-  // pass quotes array to the data prop
+
   return (
-    <>
-      <FlatList
-        data={quotes}
-        renderItem={renderQuoteItem}
-        keyExtractor={(item) => item.id}
-      />
-      <View style={styles.quoteBtnContainer}>
-        <Button
-          title="Add Quote"
-          onPress={quotePressHandler}
-          style={styles.quoteButton}
-          color={Colors.textDarker}
-        />
+    <Pressable>
+      <View style={styles.container}>
+        <Text style={styles.title}>{title}</Text>
+        <Text style={styles.content}>{description}</Text>
+        <Text style={styles.name}>{name}</Text>
+        <View style={styles.quoteBtnContainer}>
+          <Button
+            title="View Details"
+            onPress={quotePressHandler}
+            style={styles.quoteButton}
+            color={Colors.textLight}
+          />
+        </View>
       </View>
-    </>
+    </Pressable>
   );
 }
 
-export default QuotesList;
+export default QuoteItem;
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -65,8 +62,9 @@ const styles = StyleSheet.create({
     width: 350,
     marginBottom: 16,
   },
+
   quoteBtnContainer: {
-    backgroundColor: Colors.btnLight,
+    backgroundColor: Colors.bgDark,
     fontSize: 12,
     color: "#333",
     padding: 8,
