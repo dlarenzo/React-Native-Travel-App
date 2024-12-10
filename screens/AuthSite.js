@@ -18,6 +18,7 @@ import Listing from "../components/Listing";
 import listingData from "../data/destinations.json";
 import HotTopics from "../components/HotTopics";
 import OurClients from "../components/OurClients";
+import OurClients2 from "../components/OurClients2";
 import Footer from "../components/Footer";
 
 function AuthSite() {
@@ -59,6 +60,8 @@ function AuthSite() {
         return <HotTopics />;
       case "clients":
         return <OurClients />;
+      case "clients2":
+        return <OurClients2 />;
       case "explore":
         return <ExploreTours />;
       case "footer":
@@ -76,6 +79,7 @@ function AuthSite() {
     { type: "topics" },
     { type: "services" },
     { type: "clients" },
+    { type: "clients2" },
     { type: "explore" },
     { type: "footer" },
   ];
