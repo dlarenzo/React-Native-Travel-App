@@ -1,8 +1,11 @@
 import { View, StyleSheet, Text, ImageBackground } from "react-native";
 import QuoteOutput from "./QuoteOutput/QuoteOutput";
 import { Colors } from "../constants/styles";
+import { QuotesContext } from "../store/quotes-context";
+import { useContext } from "react";
 
 function OurClients2() {
+  const quotesCtx = useContext(QuotesContext);
   return (
     <View style={styles.container}>
       <ImageBackground
@@ -10,7 +13,7 @@ function OurClients2() {
         style={{ flex: 1 }}
       >
         <Text style={styles.sectionTitle}>Our Clients Say</Text>
-        <QuoteOutput />
+        <QuoteOutput quotes={quotesCtx.quotes} />
       </ImageBackground>
     </View>
   );

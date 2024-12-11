@@ -73,53 +73,44 @@ export const QuotesContext = createContext({
   updateQuote: (id, { title, description, name }) => {},
 });
 
-// Create a QuotesContextProvider component this is the provider function that will hold the logic
-
-// Use Reducer Function
-// Reducer function will take two arguments: state and action
-
 function quotesReducer(state, action) {
-  // check type of actions and set them
   switch (action.type) {
-    case "ADD":
-      const id = Math.random().toString();
-      return [{ ...action.payload, id: id }, ...state];
-    case "UPDATE":
-      const updatableQuoteIndex = state.findIndex(
-        (quote) => quote.id === action.payload.id
+    case "ADD_QUOTE":
+      return [...state, { ...action.payload, id: Math.random().toString() }];
+    case "UPDATE_QUOTE":
+      return state.map((quote) =>
+        quote.id === action.payload.id
+          ? { ...quote, ...action.payload.data }
+          : quote
       );
-      const updatableQuote = state[updatableQuoteIndex];
-      const updatedItem = {
-        ...updatableQuote,
-        ...action.payload.data,
-      };
-      const updatedQuotes = [...state];
-      updatedQuotes[updatableQuoteIndex] = updatedItem;
-      return updatedQuotes;
-    case "DELETE":
+    case "DELETE_QUOTE":
       return state.filter((quote) => quote.id !== action.payload);
     default:
       return state;
   }
 }
 
-function QuotesContextProvider({ children }) {
-  // We will manage the quotes related state here
+export function QuotesContextProvider({ children }) {
   const [quotesState, dispatch] = useReducer(quotesReducer, DUMMY_QUOTES);
 
-  function addQuote({ quoteData }) {
-    dispatch({ type: "ADD", payload: quoteData });
+  function addQuote(quote) {
+    dispatch({ type: "ADD_QUOTE", payload: quote });
+  }
+
+  function updateQuote(id, data) {
+    dispatch({ type: "UPDATE_QUOTE", payload: { id, data } });
   }
 
   function deleteQuote(id) {
-    dispatch({ type: "DELETE", payload: quoteId });
+    dispatch({ type: "DELETE_QUOTE", payload: id });
   }
 
-  function updateQuote(id, quoteData) {
-    dispatch({ type: "UPDATE", payload: { id: id, data: quoteData } });
-  }
-
-  return <QuotesContext.Provider>{children}</QuotesContext.Provider>;
+  return (
+    <QuotesContext.Provider
+      value={{ quotes: quotesState, addQuote, updateQuote, deleteQuote }}
+    >
+      {children}
+    </QuotesContext.Provider>
+  );
 }
-
 export default QuotesContextProvider;

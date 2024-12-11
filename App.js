@@ -27,6 +27,7 @@ import AuthSite from "./screens/AuthSite";
 import IconButton from "./components/ui/IconButton";
 import Listing from "./components/Listing";
 import ManageQuote from "./components/QuoteOutput/ManageQuote";
+import QuotesContextProvider from "./store/quotes-context";
 
 // Create Stake Navigator
 const Stack = createNativeStackNavigator();
@@ -115,12 +116,14 @@ function Navigation() {
   const authCtx = useContext(AuthContext);
 
   return (
-    <NavigationContainer>
-      {/* if not authenticated, show AuthStack */}
-      {!authCtx.isAuthenticated && <AuthStack />}
-      {/* if authenticated, show AuthenticatedStack */}
-      {authCtx.isAuthenticated && <AuthenticatedStack />}
-    </NavigationContainer>
+    <QuotesContextProvider>
+      <NavigationContainer>
+        {/* if not authenticated, show AuthStack */}
+        {!authCtx.isAuthenticated && <AuthStack />}
+        {/* if authenticated, show AuthenticatedStack */}
+        {authCtx.isAuthenticated && <AuthenticatedStack />}
+      </NavigationContainer>
+    </QuotesContextProvider>
   );
 }
 

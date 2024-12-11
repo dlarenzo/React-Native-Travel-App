@@ -2,8 +2,13 @@ import { View, Text, StyleSheet, Button } from "react-native";
 import { Colors } from "../../constants/styles";
 import { useLayoutEffect } from "react";
 import IconButton from "../ui/IconButton";
+import { QuotesContext } from "../../store/quotes-context";
+import { useContext } from "react";
 
 function ManageQuote({ route, navigation }) {
+  // Add useContext Hook to get the quotes array
+  const quotesCtx = useContext(QuotesContext);
+
   // Get the quoteId from the route params
   // If there is an id, then the user is editing a quote, if not, then the user is adding a new quote
   const editedQuoteId = route.params?.quoteId;
@@ -18,6 +23,7 @@ function ManageQuote({ route, navigation }) {
 
   // Delete button functionality
   function deleteQuoteHandler() {
+    quotesCtx.deleteQuote(editedQuoteId);
     navigation.goBack();
   }
 
@@ -28,6 +34,19 @@ function ManageQuote({ route, navigation }) {
 
   // Confirm button functionality
   function confirmHandler() {
+    if (isEditing) {
+      quotesCtx.updateQuote(editedQuoteId, {
+        title: "Updated Test",
+        description: "Updated Test Paragraph Information Here",
+        name: "Updated Test Name",
+      });
+    } else {
+      quotesCtx.addQuote({
+        title: "Test",
+        description: "Test Paragraph Information Here",
+        name: "Test Name",
+      });
+    }
     navigation.goBack();
   }
 
