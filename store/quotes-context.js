@@ -1,5 +1,4 @@
-import { View, Text, StyleSheet } from "react-native";
-import QuotesList from "./QuotesList";
+import { createContext, useReducer } from "react";
 
 // Dummy Data for QuotesList
 const DUMMY_QUOTES = [
@@ -67,25 +66,60 @@ const DUMMY_QUOTES = [
   },
 ];
 
-function QuoteOutput({ quotes }) {
-  return (
-    <View style={styles.container}>
-      {/* Quote Output, pass through Dummy_Quotes */}
-      <Text style={styles.title}>Quotes</Text>
-      <QuotesList quotes={DUMMY_QUOTES} />
-    </View>
-  );
+export const QuotesContext = createContext({
+  quotes: [],
+  addQuote: ({ title, description, name }) => {},
+  deleteQuote: (id) => {},
+  updateQuote: (id, { title, description, name }) => {},
+});
+
+// Create a QuotesContextProvider component this is the provider function that will hold the logic
+
+// Use Reducer Function
+// Reducer function will take two arguments: state and action
+
+function quotesReducer(state, action) {
+  // check type of actions and set them
+  switch (action.type) {
+    case "ADD":
+      const id = Math.random().toString();
+      return [{ ...action.payload, id: id }, ...state];
+    case "UPDATE":
+      const updatableQuoteIndex = state.findIndex(
+        (quote) => quote.id === action.payload.id
+      );
+      const updatableQuote = state[updatableQuoteIndex];
+      const updatedItem = {
+        ...updatableQuote,
+        ...action.payload.data,
+      };
+      const updatedQuotes = [...state];
+      updatedQuotes[updatableQuoteIndex] = updatedItem;
+      return updatedQuotes;
+    case "DELETE":
+      return state.filter((quote) => quote.id !== action.payload);
+    default:
+      return state;
+  }
 }
 
-export default QuoteOutput;
+function QuotesContextProvider({ children }) {
+  // We will manage the quotes related state here
+  const [quotesState, dispatch] = useReducer(quotesReducer, DUMMY_QUOTES);
 
-const styles = StyleSheet.create({
-  container: {
-    padding: 20,
-  },
-  title: {
-    fontSize: 20,
-    fontWeight: "bold",
-    marginBottom: 10,
-  },
-});
+  function addQuote({ quoteData }) {
+    dispatch({ type: "ADD", payload: quoteData });
+  }
+
+  function deleteQuote(id) {
+    dispatch({ type: "DELETE", payload: quoteId });
+  }
+
+  function updateQuote(id, quoteData) {
+    dispatch({ type: "UPDATE", payload: { id: id, data: quoteData } });
+  }
+
+  return <QuotesContext.Provider>{children}</QuotesContext.Provider>;
+}
+
+export default QuotesContextProvider;
