@@ -1,9 +1,10 @@
-import { View, Text, StyleSheet, Button } from "react-native";
+import { View, Text, StyleSheet, Button, TextInput } from "react-native";
 import { Colors } from "../../constants/styles";
 import { useLayoutEffect } from "react";
 import IconButton from "../ui/IconButton";
 import { QuotesContext } from "../../store/quotes-context";
 import { useContext } from "react";
+import QuoteForm from "../ManageQuote/QuoteForm";
 
 function ManageQuote({ route, navigation }) {
   // Add useContext Hook to get the quotes array
@@ -52,6 +53,7 @@ function ManageQuote({ route, navigation }) {
 
   return (
     <View style={styles.container}>
+      <QuoteForm />
       <View style={styles.buttonsContainer}>
         <Button mode="flat" onPress={cancelHandler} title="Cancel" />
 
