@@ -4,6 +4,7 @@ export const Colors = {
   error: "#ff0000",
   textDarker: "#143d52",
   textDark: "#000000",
+  textBlue: "#409FCF",
   textLight: "#ffffff",
   bgDarker: "#143d52",
   bgDark: "#409FCF",

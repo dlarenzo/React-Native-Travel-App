@@ -15,6 +15,11 @@ function ManageQuote({ route, navigation }) {
   const editedQuoteId = route.params?.quoteId;
   const isEditing = !!editedQuoteId;
 
+  // Fetching the quote to edit
+  const selectedQuote = quotesCtx.quotes.find(
+    (quote) => quote.id === editedQuoteId
+  );
+
   // Set Header Title based on whether the user is editing or adding a quote. Wrap it in a useLayoutEffect Hook
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -34,31 +39,24 @@ function ManageQuote({ route, navigation }) {
   }
 
   // Confirm button functionality
-  function confirmHandler() {
+  function confirmHandler(expenseData) {
     if (isEditing) {
-      quotesCtx.updateQuote(editedQuoteId, {
-        title: "Updated Test",
-        description: "Updated Test Paragraph Information Here",
-        name: "Updated Test Name",
-      });
+      quotesCtx.updateQuote(editedQuoteId, expenseData);
     } else {
-      quotesCtx.addQuote({
-        title: "Test",
-        description: "Test Paragraph Information Here",
-        name: "Test Name",
-      });
+      quotesCtx.addQuote(expenseData);
     }
     navigation.goBack();
   }
 
   return (
     <View style={styles.container}>
-      <QuoteForm />
-      <View style={styles.buttonsContainer}>
-        <Button mode="flat" onPress={cancelHandler} title="Cancel" />
+      <QuoteForm
+        submitButtonLabel={isEditing ? "Update" : "Add"}
+        onSubmit={confirmHandler}
+        onCancel={cancelHandler}
+        defaultValues={selectedQuote}
+      />
 
-        <Button onPress={confirmHandler} title={isEditing ? "Update" : "Add"} />
-      </View>
       {isEditing && (
         <View style={styles.deleteContainer}>
           <IconButton

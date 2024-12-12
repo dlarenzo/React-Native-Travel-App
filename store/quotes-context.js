@@ -49,6 +49,7 @@ const DUMMY_QUOTES = [
     title: "7 The Destinations!",
     description:
       "I couldn't believe the options they had available.  We were able to choose from so many different destinations.  We will definitely be booking with them again.",
+    name: "William C. Wonka",
   },
   {
     id: "8",
